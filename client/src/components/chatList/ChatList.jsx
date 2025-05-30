@@ -11,6 +11,10 @@ const ChatList = () => {
       }).then((res) => res.json()),
   });
 
+  console.log(data);
+  console.log(isPending);
+  console.log(error);
+
   return (
     <div className="chatList">
       <span className="title">DASHBOARD</span>
@@ -24,6 +28,8 @@ const ChatList = () => {
           ? "Loading..."
           : error
           ? "Something went wrong!"
+          : data.length === 0
+          ? "No recent chats yet"
           : data?.map((chat) => (
               <Link to={`/dashboard/chats/${chat._id}`} key={chat._id}>
                 {chat.title}
